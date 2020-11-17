@@ -1,2 +1,1 @@
-# learn-python-crawl
-2020年寒假自学
+# 基于计算机视觉和PYQT5的批量抠图软件
