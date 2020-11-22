@@ -94,6 +94,8 @@ def koutu():
 2、识别脸部的face recogition库，(是离线的模型，不用联网），但是只识别脸。头发、耳朵、脖子都不管。只会给你个脸部范围:用4个参数x1、x2、y1、y2组成的矩形来确定。  解决方案是:以基本参数扩大一点(应该有更好的数学模型) 
 
 *脸部范围代码 *  
-`<# 以基本参数扩大一点,获取头像区域范围
-        imagen = image[top - top // 2 - top // 3:bottom + bottom // 4, left - left // 2:right + right // 5]>`
+`
+# 以基本参数扩大一点,获取头像区域范围  
+ imagen = image[top - top // 2 - top // 3:bottom + bottom // 4, left - left // 2:right + right // 5]  
+`
  
