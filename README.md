@@ -22,18 +22,18 @@ def koutu():
 ```
 --先用get_foreground函数调用百度api使用其训练的模型实现人像分割，识别人体的轮廓范围，与背景进行分离，适用于拍照背景替换、照片合成、身体特效等场景；输入正常人像图片，返回分割后的二值结果图、灰度图、透明背景的人像图,返回的图像是透明图层，根据所选背景颜色是白色还是蓝色，GetWhiteScreen函数得到白底图片，GetBlueScreen函数得到蓝底图片，BlendImg函数将用get_foreground函数人物分割得到的图像与底色图片加权成一个新图片。因人像分割后不能得到具体的面部照片，Getface函数调用face_recognition库是世界上最简洁的人脸识别库，可以使用Python和命令行工具提取、识别、操作人脸。可得到具体的面部图片，保存并输出到目标文件夹。
 ```
-if wob:
-                print("white")  
-                GetWhiteScreen(img.shape[0], img.shape[1], path + "/" + "白底" + item)                 # 白底  
-                BlendImg(path + "/" + item, path + "/" + "白底" + item, path + "/" + "合成" + item)     # 原透明图层人像+白底  
-                Getface(path + "/" + "合成" + item, path + "/" + "最终" + item)                         # 白底人像+face_rerecognition得到白底大头照  
-                os.remove(path + "/" + "白底" + item)  
-            else:  
-                print("blue")  
-                GetBlueScreen(img.shape[0], img.shape[1], path + "/" + "蓝底" + item)  
-                BlendImg(path + "/" + item, path + "/" + "蓝底" + item, path + "/" + "合成" + item)  
-                Getface(path + "/" + "合成" + item, path + "/" + "最终" + item)  
-                os.remove(path + "/" + "蓝底" + item)  
+if wob:  
+  print("white")  
+  GetWhiteScreen(img.shape[0], img.shape[1], path + "/" + "白底" + item)                 # 白底  
+  BlendImg(path + "/" + item, path + "/" + "白底" + item, path + "/" + "合成" + item)     # 原透明图层人像+白底  
+  Getface(path + "/" + "合成" + item, path + "/" + "最终" + item)                         # 白底人像+face_rerecognition得到白底大头照  
+  os.remove(path + "/" + "白底" + item)  
+else:  
+  print("blue")  
+  GetBlueScreen(img.shape[0], img.shape[1], path + "/" + "蓝底" + item)  
+  BlendImg(path + "/" + item, path + "/" + "蓝底" + item, path + "/" + "合成" + item)  
+  Getface(path + "/" + "合成" + item, path + "/" + "最终" + item)  
+  os.remove(path + "/" + "蓝底" + item)  
 ```
 图表 2  kousu函数调用流程​​​​图表 3  基于PYQT5的UI界面  
  
