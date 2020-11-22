@@ -49,7 +49,8 @@ else:
 2、调用百度Al的API(应用程序接口)，通过网络调用人工智能接口给出源数据，返回所需数据。来实现Al赋能。  
 
 *核心代码*  
-```def koutu():
+```
+def koutu():
     global wob
     path = dir_choose    # 图片路径
 
