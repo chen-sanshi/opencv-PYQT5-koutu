@@ -13,7 +13,7 @@
 
 --源代码有七个主要函数，koutu函数是放在PYQT5框架下运行的函数，koutu函数按要求调用其余函数，实现对应功能。PyQt5 是用来创建Python GUI应用程序的工具包。作为一个跨平台的工具包，PyQt可以在所有主流操作系统上运行，PyQt5是基于Digia公司强大的图形程式框架Qt5的python接口，由一组python模块构成。PyQt5本身拥有超过620个类和6000函数及方法。在可以运行于多个平台，包括：Unix, Windows, and Mac OS。此布局有五个选项，给选择源文件夹，选择文件保存目录和抠图设置信号后自定义点击事件函数，自定义点击事件函数slot_btn_koutu中调用koutu函数，选择白底和蓝底为实例化的两个按钮，设置按钮点点击状态且绑定点击事件。os.getcwd函数获取当前程序文件位置，是实现选择文件夹的主要函数。  
 ```def GetWhiteScreen(width, height, wpath):  
-def GetBlueScreen(width, height, wpath):  
+`<def GetBlueScreen(width, height, wpath):>`    
 def Getface(source, output):  
 def BlendImg(fore_image, base_image, output_path):  
 def get_access_token():  
