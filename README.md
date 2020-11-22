@@ -39,7 +39,6 @@ else:
   Getface(path + "/" + "合成" + item, path + "/" + "最终" + item)  
   os.remove(path + "/" + "蓝底" + item)  
 ```
-图表 3  基于PYQT5的UI界面  
  
 ### 二 关键技术难点及解决方案
 **技术难点分析:**    
@@ -48,7 +47,47 @@ else:
 **解决方案:**  
 1、使用PYQT5的Python图形界面库，解决软件界面的搭建。  
 2、调用百度Al的API(应用程序接口)，通过网络调用人工智能接口给出源数据，返回所需数据。来实现Al赋能。  
-图表 4  核心代码  
+
+*核心代码*  
+```def koutu():
+    global wob
+    path = dir_choose    # 图片路径
+
+    # 调用百度api实现人像分割，返回的图像是透明图层
+    if os.path.exists(path):     # 判断路径是否存在
+        files = os.listdir(path)
+        for item in files:
+            get_foreground(path + "/" + item, str(fileName_choose) + "/" + item)        # 批量抠图
+        print("---- 程序结束 ----")
+    else:
+        print("输入的路径不存在！！！")
+        print("---- 程序结束 ----")
+
+    path = fileName_choose
+
+    # 合成
+    if os.path.exists(path):        # 判断路径是否存在
+        files = os.listdir(path)
+        for item in files:
+            img = cv2.imdecode(np.fromfile(path + "/" + item, dtype=np.uint8), cv2.IMREAD_UNCHANGED)
+            print(item)
+            # 第三步：生成绿幕并合成
+            if wob:
+                print("white")
+                GetWhiteScreen(img.shape[0], img.shape[1], path + "/" + "白底" + item)                 # 白底
+                BlendImg(path + "/" + item, path + "/" + "白底" + item, path + "/" + "合成" + item)     # 原透明图层人像+白底
+                Getface(path + "/" + "合成" + item, path + "/" + "最终" + item)                         # 白底人像+face_rerecognition得到白底大头照
+                os.remove(path + "/" + "白底" + item)
+            else:
+                print("blue")
+                GetBlueScreen(img.shape[0], img.shape[1], path + "/" + "蓝底" + item)
+                BlendImg(path + "/" + item, path + "/" + "蓝底" + item, path + "/" + "合成" + item)
+                Getface(path + "/" + "合成" + item, path + "/" + "最终" + item)
+                os.remove(path + "/" + "蓝底" + item)
+
+    print("完成!!!")
+```
+
 **总结：**   
 1、最初使用Paddle(百度飞桨机器学习平台)，用谷歌训练好的模型在本地做人像切割(抠图)(可以无需联网），但是无法识别中文文件，所以后来改用了百度Al来实现，还需用CV2的  decode方法，不要直接imread读取(来解决读取中文文件)。  
 2、识别脸部的face recogition库，(是离线的模型，不用联网），但是只识别脸。头发、耳朵、脖子都不管。只会给你个脸部范围:用4个参数x1、x2、y1、y2组成的矩形来确定。  解决方案是:以基本参数扩大一点(应该有更好的数学模型)  
