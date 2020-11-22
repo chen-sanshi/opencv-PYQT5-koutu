@@ -24,9 +24,9 @@ def koutu():
 ```
 if wob:  
   print("white")  
-  GetWhiteScreen(img.shape[0], img.shape[1], path + "/" + "白底" + item)                 # 白底  
-  BlendImg(path + "/" + item, path + "/" + "白底" + item, path + "/" + "合成" + item)     # 原透明图层人像+白底  
-  Getface(path + "/" + "合成" + item, path + "/" + "最终" + item)                         # 白底人像+face_rerecognition得到白底大头照  
+  GetWhiteScreen(img.shape[0], img.shape[1], path + "/" + "白底" + item)  
+  BlendImg(path + "/" + item, path + "/" + "白底" + item, path + "/" + "合成" + item)       
+  Getface(path + "/" + "合成" + item, path + "/" + "最终" + item)                        
   os.remove(path + "/" + "白底" + item)  
 else:  
   print("blue")  
